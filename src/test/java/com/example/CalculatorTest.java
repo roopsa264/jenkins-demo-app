@@ -44,4 +44,9 @@ public class CalculatorTest {
     public void testDivideByZero() {
         calculator.divide(10, 0);
     }
+@Test
+   public void testPower() {
+       assertEquals("2^3 should equal 8", 8, calculator.power(2, 3));
+       assertEquals("5^2 should equal 25", 25, calculator.power(5, 2));
+   }
 }

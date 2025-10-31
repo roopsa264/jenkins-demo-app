@@ -35,4 +35,10 @@ public class Calculator {
         }
         return a / b;
     }
+/**
+    * Calculates power
+    */
+   public int power(int base, int exponent) {
+       return (int) Math.pow(base, exponent);
+   }
 }
