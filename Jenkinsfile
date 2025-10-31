@@ -74,27 +74,28 @@ pipeline {
         
         script {
             bat '''
-    echo Stopping Tomcat if running...
-    taskkill /F /IM "tomcat9.exe" 2>nul || echo Tomcat not running
-    
-    echo Removing old deployment...
-    if exist "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app*" (
-        del /Q "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app*"
-        rmdir /S /Q "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app"
-    )
-    
-    echo Copying new WAR file...
-    copy /Y target\\jenkins-demo-app.war "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\"
-    
-    echo Starting Tomcat...
-    cd "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\bin"
-    call startup.bat
-    
-    echo Waiting for deployment...
-    ping 127.0.0.1 -n 16 > nul
-    
-    echo ✅ Deployment completed!
-'''        }
+                echo Stopping Tomcat if running...
+                taskkill /F /IM "tomcat9.exe" 2>nul || echo Tomcat not running
+                
+                echo Removing old deployment...
+                if exist "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app*" (
+                    del /Q "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app*"
+                    rmdir /S /Q "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\jenkins-demo-app"
+                )
+                
+                echo Copying new WAR file...
+                copy /Y target\\jenkins-demo-app.war "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\webapps\\"
+                
+                echo Starting Tomcat...
+                cd "C:\\Program Files\\Apache\\Tomcat\\apache-tomcat-9.0.111\\bin"
+                call startup.bat
+                
+                echo Waiting for deployment...
+                ping 127.0.0.1 -n 16 > nul
+                
+                echo ✅ Deployment completed!
+            '''
+        }
     }
 }
     
